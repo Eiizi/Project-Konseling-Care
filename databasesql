@@ -1,0 +1,702 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Dec 31, 2025 at 02:14 AM
+-- Server version: 8.0.30
+-- PHP Version: 8.2.28
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `db_konseling`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointments`
+--
+
+CREATE TABLE `appointments` (
+  `id` bigint UNSIGNED NOT NULL,
+  `patient_id` bigint UNSIGNED NOT NULL,
+  `counselor_id` bigint UNSIGNED NOT NULL,
+  `schedule_time` datetime NOT NULL,
+  `session_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'video',
+  `meeting_link` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `counselor_feedback` text COLLATE utf8mb4_unicode_ci,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `meeting_type` enum('online','offline') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'online',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `appointments`
+--
+
+INSERT INTO `appointments` (`id`, `patient_id`, `counselor_id`, `schedule_time`, `session_type`, `meeting_link`, `counselor_feedback`, `status`, `meeting_type`, `created_at`, `updated_at`) VALUES
+(1, 3, 6, '2025-11-03 09:00:00', 'video', NULL, NULL, 'completed', 'online', '2025-10-27 22:58:17', '2025-11-02 23:30:50'),
+(2, 3, 5, '2025-10-31 14:00:00', 'video', NULL, NULL, 'confirmed', 'online', '2025-10-29 06:45:50', '2025-10-29 06:46:36'),
+(3, 3, 5, '2025-11-07 14:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-11-02 22:16:38', '2025-11-02 23:09:34'),
+(4, 3, 5, '2025-11-07 13:00:00', 'video', NULL, NULL, 'confirmed', 'online', '2025-11-02 22:42:35', '2025-11-09 23:06:27'),
+(5, 3, 5, '2025-11-14 15:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-11-08 21:57:25', '2025-11-08 21:59:10'),
+(6, 3, 5, '2025-11-14 15:00:00', 'video', NULL, NULL, 'completed', 'online', '2025-11-08 21:59:18', '2025-11-09 23:24:21'),
+(7, 8, 6, '2025-11-10 09:00:00', 'video', NULL, NULL, 'completed', 'online', '2025-11-09 00:09:35', '2025-11-09 23:21:47'),
+(8, 8, 6, '2025-11-13 10:00:00', 'video', NULL, NULL, 'completed', 'online', '2025-11-09 00:18:19', '2025-11-09 23:21:39'),
+(9, 8, 7, '2025-11-17 20:00:00', 'video', NULL, NULL, 'pending', 'online', '2025-11-11 21:03:04', '2025-11-11 21:03:04'),
+(10, 8, 7, '2025-11-17 21:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'completed', 'online', '2025-11-11 21:11:42', '2025-11-11 21:56:46'),
+(11, 8, 7, '2025-11-18 11:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'completed', 'online', '2025-11-11 21:58:57', '2025-11-11 21:59:26'),
+(12, 3, 6, '2025-11-20 09:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'completed', 'online', '2025-11-11 22:14:33', '2025-11-11 22:15:05'),
+(13, 3, 6, '2025-11-17 09:00:00', 'video', 'https://zoom.us/j/1234567890', 'Untuk sesi  ini berjalan dengan baik dan tidak ada kendala', 'confirmed', 'online', '2025-11-11 22:17:02', '2025-11-12 00:28:33'),
+(14, 3, 5, '2025-11-28 13:00:00', 'video', 'https://zoom.us/j/1234567890', 'Halo bangg', 'completed', 'online', '2025-11-24 23:19:36', '2025-11-24 23:24:09'),
+(15, 9, 5, '2025-12-02 21:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'pending', 'online', '2025-11-24 23:30:06', '2025-11-24 23:30:06'),
+(16, 23, 5, '2025-12-09 21:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'completed', 'online', '2025-12-08 00:54:29', '2025-12-08 01:04:17'),
+(20, 9, 7, '2025-12-08 20:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-12-08 01:24:44', '2025-12-08 02:15:32'),
+(28, 9, 7, '2025-12-08 21:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-12-08 01:39:54', '2025-12-08 02:15:30'),
+(29, 9, 7, '2025-12-09 10:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-12-08 01:45:16', '2025-12-08 02:15:25'),
+(32, 9, 7, '2025-12-09 11:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'cancelled', 'online', '2025-12-08 01:55:31', '2025-12-08 02:15:22'),
+(33, 9, 7, '2025-12-09 12:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'cancelled', 'online', '2025-12-08 01:57:58', '2025-12-08 02:15:18'),
+(34, 9, 7, '2025-12-09 13:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'completed', 'online', '2025-12-08 02:00:25', '2025-12-08 02:03:49'),
+(35, 9, 7, '2025-12-09 13:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'completed', 'online', '2025-12-08 02:05:21', '2025-12-08 02:15:52'),
+(36, 9, 7, '2025-12-08 20:00:00', 'video', 'https://zoom.us/j/1234567890', NULL, 'cancelled', 'online', '2025-12-08 02:16:33', '2025-12-08 02:17:46'),
+(37, 9, 7, '2025-12-08 20:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-12-08 02:23:03', '2025-12-08 02:28:58'),
+(38, 9, 7, '2025-12-08 20:00:00', 'video', NULL, NULL, 'completed', 'online', '2025-12-08 02:29:06', '2025-12-08 02:40:00'),
+(39, 9, 7, '2025-12-09 10:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-12-08 02:29:59', '2025-12-08 02:31:51'),
+(40, 9, 5, '2025-12-12 13:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-12-08 02:34:07', '2025-12-08 02:35:04'),
+(41, 9, 5, '2025-12-12 13:00:00', 'video', NULL, 'Tetap semangat walau dunia membantai bantai bg', 'completed', 'online', '2025-12-08 02:35:29', '2025-12-19 19:54:58'),
+(42, 9, 7, '2025-12-09 10:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-12-08 02:40:34', '2025-12-08 02:40:48'),
+(43, 9, 7, '2025-12-09 10:00:00', 'video', NULL, NULL, 'cancelled', 'online', '2025-12-08 02:41:22', '2025-12-08 02:43:27'),
+(44, 9, 7, '2025-12-09 10:00:00', 'video', NULL, NULL, 'cancelled', 'offline', '2025-12-08 02:48:40', '2025-12-08 02:52:16'),
+(48, 9, 7, '2025-12-09 10:00:00', 'video', NULL, NULL, 'cancelled', 'offline', '2025-12-08 03:01:53', '2025-12-08 03:07:34'),
+(49, 9, 7, '2025-12-09 10:00:00', 'video', NULL, NULL, 'cancelled', 'offline', '2025-12-08 03:07:40', '2025-12-08 03:10:48'),
+(51, 9, 7, '2025-12-09 10:00:00', 'video', NULL, NULL, 'cancelled', 'offline', '2025-12-08 03:11:22', '2025-12-08 03:16:04'),
+(53, 9, 7, '2025-12-09 10:00:00', 'video', NULL, NULL, 'confirmed', 'offline', '2025-12-08 03:16:11', '2025-12-08 03:16:27'),
+(54, 9, 6, '2025-12-18 09:00:00', 'video', NULL, NULL, 'confirmed', 'offline', '2025-12-14 21:35:08', '2025-12-14 21:36:00'),
+(55, 9, 6, '2025-12-29 09:00:00', 'video', 'https://meet.google.com/new', 'Yaaa keren', 'completed', 'online', '2025-12-18 06:12:07', '2025-12-28 21:28:45'),
+(56, 23, 6, '2025-12-27 02:00:00', 'video', NULL, NULL, 'confirmed', 'offline', '2025-12-19 20:45:07', '2025-12-19 20:45:21'),
+(57, 9, 5, '2025-12-30 09:00:00', 'video', NULL, NULL, 'confirmed', 'offline', '2025-12-20 23:16:32', '2025-12-20 23:16:44'),
+(58, 9, 5, '2026-01-02 13:00:00', 'video', NULL, NULL, 'completed', 'offline', '2025-12-28 23:52:22', '2025-12-30 19:08:23'),
+(59, 9, 6, '2026-01-03 01:00:00', 'video', 'https://meet.google.com/new', NULL, 'completed', 'online', '2025-12-28 23:54:03', '2025-12-30 18:56:25'),
+(60, 9, 6, '2026-01-03 02:00:00', 'video', NULL, NULL, 'cancelled', 'offline', '2025-12-30 18:36:56', '2025-12-30 18:55:22'),
+(61, 9, 6, '2026-01-03 01:00:00', 'offline', NULL, NULL, 'completed', 'offline', '2025-12-30 19:04:44', '2025-12-30 19:08:53'),
+(62, 9, 5, '2026-01-30 13:00:00', 'offline', NULL, 'Semangat bapakk!!', 'completed', 'offline', '2025-12-30 19:07:44', '2025-12-30 19:10:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cache`
+--
+
+CREATE TABLE `cache` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cache_locks`
+--
+
+CREATE TABLE `cache_locks` (
+  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `expiration` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `counselor_profiles`
+--
+
+CREATE TABLE `counselor_profiles` (
+  `id` bigint UNSIGNED NOT NULL,
+  `user_id` bigint UNSIGNED NOT NULL,
+  `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `specializations` text COLLATE utf8mb4_unicode_ci,
+  `experience_years` int NOT NULL DEFAULT '0',
+  `bio` text COLLATE utf8mb4_unicode_ci,
+  `certificate_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cv_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `identity_url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `is_verified` tinyint(1) NOT NULL DEFAULT '0',
+  `rate` decimal(10,2) NOT NULL DEFAULT '100000.00',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `counselor_profiles`
+--
+
+INSERT INTO `counselor_profiles` (`id`, `user_id`, `photo`, `specializations`, `experience_years`, `bio`, `certificate_url`, `cv_url`, `identity_url`, `is_verified`, `rate`, `created_at`, `updated_at`) VALUES
+(2, 5, NULL, 'Stress Analogy Diagnosis', 0, NULL, NULL, NULL, NULL, 1, '100000.00', '2025-10-20 23:44:03', '2025-12-30 18:31:12'),
+(3, 6, NULL, 'Mental Healt Specialist', 10, NULL, NULL, NULL, NULL, 1, '120000.00', '2025-10-20 23:51:06', '2025-12-28 21:27:36'),
+(4, 7, NULL, 'Psikologi Klinis', 0, NULL, 'counselor_documents/certificates/Stzd6So4cVPBMmzdavElluL2aCLCZGtNnQfzjY4g.pdf', 'counselor_documents/cvs/kbTBOokYL9rYU0xQWImZ4knO6v4zlRD4wKOvC9au.pdf', 'counselor_documents/identity/2kZdcGBHM8qjFaD5utGEcZuUWGjUEKaxRUSEjs61.pdf', 1, '100000.00', '2025-10-30 00:22:38', '2025-12-30 18:32:11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `failed_jobs`
+--
+
+CREATE TABLE `failed_jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jobs`
+--
+
+CREATE TABLE `jobs` (
+  `id` bigint UNSIGNED NOT NULL,
+  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `attempts` tinyint UNSIGNED NOT NULL,
+  `reserved_at` int UNSIGNED DEFAULT NULL,
+  `available_at` int UNSIGNED NOT NULL,
+  `created_at` int UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_batches`
+--
+
+CREATE TABLE `job_batches` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `total_jobs` int NOT NULL,
+  `pending_jobs` int NOT NULL,
+  `failed_jobs` int NOT NULL,
+  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `cancelled_at` int DEFAULT NULL,
+  `created_at` int NOT NULL,
+  `finished_at` int DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `migrations`
+--
+
+CREATE TABLE `migrations` (
+  `id` int UNSIGNED NOT NULL,
+  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `batch` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `migrations`
+--
+
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '0001_01_01_000000_create_users_table', 1),
+(2, '0001_01_01_000001_create_cache_table', 1),
+(3, '0001_01_01_000002_create_jobs_table', 1),
+(4, '2025_10_14_043318_create_counselor_profiles_table', 1),
+(5, '2025_10_14_045033_add_role_to_users_table', 2),
+(6, '2025_10_23_071856_create_appointments_table', 3),
+(7, '2025_10_23_073946_create_transactions_table', 4),
+(8, '2025_10_28_034248_create_schedules_table', 5),
+(9, '2025_10_30_060211_add_document_fields_to_counselor_profiles_table', 6),
+(10, '2025_10_30_064941_add_patient_details_to_users_table', 7),
+(11, '2025_11_03_055702_add_meeting_link_to_appointments_table', 8),
+(12, '2025_11_09_050955_create_reviews_table', 9),
+(13, '2025_11_09_051011_create_session_notes_table', 9),
+(14, '2025_11_12_033056_add_rate_to_counselor_profiles_table', 10),
+(15, '2025_11_12_033145_add_fee_details_to_transactions_table', 10),
+(16, '2025_11_12_055038_add_counselor_feedback_to_appointments_table', 11),
+(17, '2025_11_28_055204_add_otp_columns_to_users_table', 12),
+(18, '2025_12_08_075537_add_meeting_type_to_appointments_table', 13),
+(19, '2025_12_08_101457_add_snap_token_to_transactions_table', 14),
+(20, '2025_12_21_064430_add_status_to_users_table', 15);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_tokens`
+--
+
+CREATE TABLE `password_reset_tokens` (
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` bigint UNSIGNED NOT NULL,
+  `appointment_id` bigint UNSIGNED NOT NULL,
+  `patient_id` bigint UNSIGNED NOT NULL,
+  `counselor_id` bigint UNSIGNED NOT NULL,
+  `rating` int NOT NULL,
+  `comment` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `reviews`
+--
+
+INSERT INTO `reviews` (`id`, `appointment_id`, `patient_id`, `counselor_id`, `rating`, `comment`, `created_at`, `updated_at`) VALUES
+(1, 8, 8, 6, 4, NULL, '2025-11-09 23:21:57', '2025-11-09 23:21:57'),
+(2, 7, 8, 6, 5, NULL, '2025-11-09 23:22:01', '2025-11-09 23:22:01'),
+(3, 12, 3, 6, 5, 'Bagus dan baik', '2025-11-11 22:15:15', '2025-11-11 22:15:15'),
+(4, 14, 3, 5, 5, 'Keren bg', '2025-11-24 23:23:27', '2025-11-24 23:23:27'),
+(5, 41, 9, 5, 5, 'Keren!! bintang 5', '2025-12-19 19:53:56', '2025-12-19 19:53:56'),
+(6, 55, 9, 6, 5, 'Kelazz', '2025-12-28 21:29:19', '2025-12-28 21:29:19'),
+(7, 35, 9, 7, 5, 'Terimakasih atas sesi konselingnya', '2025-12-28 23:55:27', '2025-12-28 23:55:27'),
+(8, 59, 9, 6, 5, 'Jozz', '2025-12-30 18:56:36', '2025-12-30 18:56:36'),
+(9, 62, 9, 5, 5, 'Testinggz', '2025-12-30 19:09:16', '2025-12-30 19:09:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedules`
+--
+
+CREATE TABLE `schedules` (
+  `id` bigint UNSIGNED NOT NULL,
+  `counselor_id` bigint UNSIGNED NOT NULL,
+  `day_of_week` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `schedules`
+--
+
+INSERT INTO `schedules` (`id`, `counselor_id`, `day_of_week`, `start_time`, `end_time`, `created_at`, `updated_at`) VALUES
+(12, 6, 'Monday', '09:00:00', '13:00:00', '2025-12-08 01:12:30', '2025-12-08 01:12:30'),
+(13, 6, 'Wednesday', '21:00:00', '12:00:00', '2025-12-08 01:12:30', '2025-12-08 01:12:30'),
+(14, 5, 'Tuesday', '09:00:00', '14:00:00', '2025-12-08 01:12:53', '2025-12-20 23:14:54'),
+(15, 5, 'Friday', '13:00:00', '16:00:00', '2025-12-08 01:12:53', '2025-12-08 01:12:53'),
+(16, 7, 'Monday', '20:00:00', '22:00:00', '2025-12-08 01:13:31', '2025-12-08 01:13:31'),
+(17, 7, 'Tuesday', '10:00:00', '14:00:00', '2025-12-08 01:13:31', '2025-12-08 01:13:31'),
+(18, 6, 'Saturday', '01:00:00', '03:00:00', '2025-12-19 20:43:37', '2025-12-19 20:43:37');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint UNSIGNED DEFAULT NULL,
+  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text COLLATE utf8mb4_unicode_ci,
+  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `last_activity` int NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
+('0bkMcm8m6rYCJqUJpW2DT4USA6mfBHQccpDn4wdx', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoiQkpweTltUk9CRUdHUzllUG9NWHZHOG94cjltQVh6elZDSHJEU0c4RCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1767147164),
+('1VOdnrLERiqepZGsIBcKtKy6pNpH4yjhdXnAaIqD', 25, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiQ0dwSVcxaWNMVXNtWkpEY1Nza1hTS3k5MFNRd0RkVHF3cEJqWlJlYSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI1O30=', 1767144101),
+('3MVJ5kbluNIa5snQlJZkcSqDQzX3yUvszl3nqPVX', NULL, '127.0.0.1', 'Veritrans', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiaVlDTDdCcFBVczN1bTJnUElFbXlwRFgzNUU0QVJlS2JNclpyUno2RSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1767146826),
+('fEHKv104CC24sGOA20bV1D6BB0y7pQtDV7F00IJO', 7, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOVBmOGVFNmg2YTlUNG9oRHRwTkFnQTVtTk05UDhxT2Z2dkZSM2U5aCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjc7fQ==', 1767144701),
+('iOxH3HChcVBitm4T96U8VsKhfghprtTS7yAeE41r', NULL, '127.0.0.1', 'Veritrans', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoibDlHeldiV1BRTG9ic2o3bEk4d1c2WHpvVFVJeDVrelk5WFBGUVNQZSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1767147236),
+('JvrjlGOQKDRtvxl6graY6vvzU3O0zIzImdgwouLc', 9, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiazZPTjZkM0xEN29pNWJFYlJFa2xVM21ObmZlRndhRW9wNUtkemljcyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjk7fQ==', 1767144968),
+('Kw4kOyKcWiwzc9EVlsdat5MSE0xa4wsyNvZcFNSE', NULL, '127.0.0.1', 'Veritrans', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiM0lHR2dlbUtGS0k1dDV1UGlBWjROVXJhRElSd0JkR1dVVUtIcmFvRSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1767146883),
+('UWjyBrWhVEiN3ammyiyKdZhDC1A9jjSVcXdxACyN', 6, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoieFBmVG85bjcyWFBWYXVzVWFBa2RSaXo0emVCUVZSMXFheHd4clpvVCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjY7fQ==', 1767144798),
+('wKW3gWL2OPzToGmgllV7qTif1ZtZB8etOkRa9uzt', NULL, '127.0.0.1', 'Veritrans', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoiSnJDajdJdjh6Q3F1clVIMnpSTndJWXBUaGtaR014aWYxMEVnU0tKdyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1767146871),
+('yxwOKy90YXlPcr5EzV8y4FecNk5ib2bvMbiHq0Ru', 9, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/143.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiMGpMTG1HZlpRa0ZYdldmcjhZaGw2ak5YZFBlNU5CSFFpNVJYWGhqeSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9sb2dpbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjk7fQ==', 1767144986);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `session_notes`
+--
+
+CREATE TABLE `session_notes` (
+  `id` bigint UNSIGNED NOT NULL,
+  `appointment_id` bigint UNSIGNED NOT NULL,
+  `counselor_id` bigint UNSIGNED NOT NULL,
+  `notes` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `session_notes`
+--
+
+INSERT INTO `session_notes` (`id`, `appointment_id`, `counselor_id`, `notes`, `created_at`, `updated_at`) VALUES
+(1, 6, 5, 'Sehat sehat pak mental health itu mahal', '2025-11-09 23:22:56', '2025-11-09 23:23:42'),
+(2, 13, 6, 'Untuk sesi  ini berjalan dengan baik dan tidak ada kendala', '2025-11-12 00:28:33', '2025-11-12 00:28:33'),
+(3, 14, 5, 'Testing', '2025-11-24 23:24:09', '2025-11-24 23:24:09'),
+(4, 55, 6, 'Halo bang', '2025-12-19 19:42:02', '2025-12-19 19:42:02'),
+(5, 41, 5, 'Keren bangg', '2025-12-19 19:44:04', '2025-12-19 19:44:04'),
+(6, 62, 5, 'Semangat bapakk!!', '2025-12-30 19:10:24', '2025-12-30 19:10:24');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `transactions`
+--
+
+CREATE TABLE `transactions` (
+  `id` bigint UNSIGNED NOT NULL,
+  `base_price` decimal(10,2) NOT NULL,
+  `admin_fee` decimal(10,2) NOT NULL,
+  `appointment_id` bigint UNSIGNED NOT NULL,
+  `total_amount` decimal(10,2) NOT NULL,
+  `payment_method` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pending',
+  `snap_token` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `transaction_code` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `transactions`
+--
+
+INSERT INTO `transactions` (`id`, `base_price`, `admin_fee`, `appointment_id`, `total_amount`, `payment_method`, `status`, `snap_token`, `transaction_code`, `created_at`, `updated_at`) VALUES
+(1, '0.00', '0.00', 1, '100000.00', 'simulation', 'verified', NULL, 'INV-1761631097-1', '2025-10-27 22:58:17', '2025-10-28 23:20:58'),
+(2, '0.00', '0.00', 2, '100000.00', 'simulation', 'verified', NULL, 'INV-1761745550-2', '2025-10-29 06:45:50', '2025-11-09 23:06:29'),
+(3, '0.00', '0.00', 3, '100000.00', NULL, 'cancelled', NULL, 'INV-1762146998-3', '2025-11-02 22:16:38', '2025-11-02 23:09:34'),
+(4, '0.00', '0.00', 4, '100000.00', 'bank_transfer', 'verified', NULL, 'INV-1762148555-4', '2025-11-02 22:42:35', '2025-11-09 23:06:27'),
+(5, '0.00', '0.00', 5, '100000.00', 'qris', 'failed', NULL, 'INV-1762664245-5', '2025-11-08 21:57:25', '2025-11-08 22:15:10'),
+(6, '0.00', '0.00', 6, '100000.00', 'bank_transfer', 'verified', NULL, 'INV-1762664358-6', '2025-11-08 21:59:18', '2025-11-09 23:06:17'),
+(7, '0.00', '0.00', 7, '100000.00', 'bank_transfer', 'verified', NULL, 'INV-1762672175-7', '2025-11-09 00:09:35', '2025-11-09 23:06:22'),
+(8, '0.00', '0.00', 8, '100000.00', 'bank_transfer', 'verified', NULL, 'INV-1762672699-8', '2025-11-09 00:18:19', '2025-11-09 23:06:25'),
+(9, '100000.00', '30000.00', 10, '130000.00', 'bank_transfer', 'success', NULL, 'INV-1762920702-10', '2025-11-11 21:11:42', '2025-11-11 21:49:35'),
+(10, '100000.00', '30000.00', 11, '130000.00', 'bank_transfer', 'success', NULL, 'INV-1762923537-11', '2025-11-11 21:58:57', '2025-11-11 21:59:11'),
+(11, '100000.00', '30000.00', 12, '130000.00', 'bank_transfer', 'success', NULL, 'INV-1762924473-12', '2025-11-11 22:14:33', '2025-11-11 22:14:51'),
+(12, '100000.00', '30000.00', 13, '130000.00', 'bank_transfer', 'success', NULL, 'INV-1762924622-13', '2025-11-11 22:17:02', '2025-11-11 22:17:15'),
+(13, '100000.00', '30000.00', 14, '130000.00', 'bank_transfer', 'success', NULL, 'INV-1764051576-14', '2025-11-24 23:19:36', '2025-11-24 23:19:53'),
+(14, '100000.00', '30000.00', 15, '130000.00', NULL, 'pending', NULL, 'INV-1764052206-15', '2025-11-24 23:30:06', '2025-11-24 23:30:06'),
+(15, '100000.00', '30000.00', 16, '130000.00', 'bank_transfer', 'success', NULL, 'INV-1765180469-16', '2025-12-08 00:54:29', '2025-12-08 00:54:44'),
+(19, '100000.00', '5000.00', 20, '105000.00', NULL, 'cancelled', NULL, NULL, '2025-12-08 01:24:44', '2025-12-08 02:15:32'),
+(27, '100000.00', '5000.00', 28, '105000.00', NULL, 'cancelled', NULL, NULL, '2025-12-08 01:39:54', '2025-12-08 02:15:30'),
+(28, '100000.00', '5000.00', 29, '105000.00', NULL, 'cancelled', NULL, NULL, '2025-12-08 01:45:16', '2025-12-08 02:15:25'),
+(31, '100000.00', '30000.00', 32, '130000.00', NULL, 'cancelled', NULL, 'INV-1765184131-32', '2025-12-08 01:55:31', '2025-12-08 02:15:22'),
+(32, '100000.00', '30000.00', 33, '130000.00', NULL, 'cancelled', NULL, 'INV-1765184278-33', '2025-12-08 01:57:58', '2025-12-08 02:15:18'),
+(33, '100000.00', '30000.00', 34, '130000.00', 'bank_transfer', 'success', NULL, 'INV-1765184425-34', '2025-12-08 02:00:25', '2025-12-08 02:01:18'),
+(34, '100000.00', '30000.00', 35, '130000.00', 'bank_transfer', 'success', NULL, 'INV-1765184721-35', '2025-12-08 02:05:21', '2025-12-08 02:05:39'),
+(35, '100000.00', '30000.00', 36, '130000.00', NULL, 'cancelled', NULL, 'INV-1765185393-36', '2025-12-08 02:16:33', '2025-12-08 02:17:46'),
+(36, '100000.00', '10000.00', 37, '110740.00', NULL, 'cancelled', NULL, 'INV-OFF-1765185783-37', '2025-12-08 02:23:03', '2025-12-08 02:28:58'),
+(37, '100000.00', '10000.00', 38, '110522.00', 'bank_transfer', 'success', NULL, 'INV-OFF-1765186146-38', '2025-12-08 02:29:06', '2025-12-08 02:29:24'),
+(38, '100000.00', '10000.00', 39, '110921.00', NULL, 'cancelled', NULL, 'INV-OFF-1765186199-39', '2025-12-08 02:29:59', '2025-12-08 02:31:51'),
+(39, '100000.00', '3000000.00', 40, '3100101.00', NULL, 'cancelled', NULL, 'INV-OFF-1765186447-40', '2025-12-08 02:34:07', '2025-12-08 02:35:04'),
+(40, '100000.00', '3000.00', 41, '103903.00', 'bank_transfer', 'success', NULL, 'INV-OFF-1765186529-41', '2025-12-08 02:35:29', '2025-12-08 02:35:51'),
+(41, '100000.00', '10000.00', 42, '110474.00', NULL, 'cancelled', NULL, 'INV-OFF-1765186834-42', '2025-12-08 02:40:34', '2025-12-08 02:40:48'),
+(42, '100000.00', '10000.00', 43, '110238.00', 'bank_transfer', 'cancelled', NULL, 'INV-OFF-1765186882-43', '2025-12-08 02:41:22', '2025-12-08 02:43:27'),
+(43, '100000.00', '10000.00', 44, '110381.00', NULL, 'cancelled', NULL, 'INV-OFF-1765187320-44', '2025-12-08 02:48:40', '2025-12-08 02:52:16'),
+(47, '100000.00', '5000.00', 48, '105105.00', NULL, 'cancelled', NULL, 'INV-OFF-1765188113-48', '2025-12-08 03:01:53', '2025-12-08 03:07:34'),
+(48, '100000.00', '5000.00', 49, '105499.00', NULL, 'cancelled', NULL, 'INV-OFF-1765188460-49', '2025-12-08 03:07:40', '2025-12-08 03:10:48'),
+(49, '100000.00', '5000.00', 51, '105508.00', NULL, 'cancelled', NULL, 'INV-OFF-1765188682-51', '2025-12-08 03:11:22', '2025-12-08 03:16:04'),
+(50, '100000.00', '5000.00', 53, '105865.00', 'bank_transfer', 'success', '7f5940fe-4e53-46d6-be57-2cb6638bddac', 'INV-OFF-1765188971-53', '2025-12-08 03:16:11', '2025-12-08 03:16:27'),
+(51, '100000.00', '5000.00', 54, '105699.00', 'bank_transfer', 'success', '53a5c66e-32d7-4c0e-8f9a-b78b83ffeca7', 'INV-OFF-1765773308-54', '2025-12-14 21:35:08', '2025-12-14 21:36:00'),
+(52, '100000.00', '5000.00', 55, '105525.00', 'bank_transfer', 'success', 'c838965d-1f73-4595-b089-c90168d6238d', 'INV-ONL-1766063527-55', '2025-12-18 06:12:07', '2025-12-18 06:13:41'),
+(53, '100000.00', '5000.00', 56, '105341.00', 'bank_transfer', 'success', '8ad68fbc-3ead-4abd-a485-4fd10623d095', 'INV-OFF-1766202307-56', '2025-12-19 20:45:07', '2025-12-19 20:45:21'),
+(54, '100000.00', '5000.00', 57, '105817.00', 'bank_transfer', 'success', 'c74aaf73-633c-498e-86e9-7bd52f189672', 'INV-OFF-1766297792-57', '2025-12-20 23:16:32', '2025-12-20 23:16:44'),
+(55, '100000.00', '5000.00', 58, '105311.00', 'bank_transfer', 'success', '4d72131c-4eed-4108-93e8-bca4cb232191', 'INV-OFF-1766991142-58', '2025-12-28 23:52:22', '2025-12-28 23:53:15'),
+(56, '120000.00', '5000.00', 59, '125216.00', 'bank_transfer', 'success', '75088467-a723-4177-96c9-b27ad4efc7e4', 'INV-ONL-1766991243-59', '2025-12-28 23:54:03', '2025-12-28 23:54:21'),
+(57, '120000.00', '5000.00', 60, '125350.00', NULL, 'cancelled', 'a70e555f-34af-4ae2-b071-9f3140021e02', 'INV-OFF-1767145016-60', '2025-12-30 18:36:56', '2025-12-30 18:55:22'),
+(58, '120000.00', '5000.00', 61, '125000.00', 'bank_transfer', 'success', '46413042-0c42-4fbc-9b0a-2184bd131508', 'INV-1767146684-257', '2025-12-30 19:04:44', '2025-12-30 19:06:43'),
+(59, '100000.00', '5000.00', 62, '105000.00', 'bank_transfer', 'success', '23f2b526-45cf-40a1-8967-ddd6590e786d', 'INV-1767146864-849', '2025-12-30 19:07:44', '2025-12-30 19:07:58');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` bigint UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `role` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'patient',
+  `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'active',
+  `age` int DEFAULT NULL,
+  `gender` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `phone_number` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `photo_path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `otp` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `otp_expires_at` timestamp NULL DEFAULT NULL,
+  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `role`, `status`, `age`, `gender`, `phone_number`, `photo_path`, `email_verified_at`, `password`, `otp`, `otp_expires_at`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin ojik', 'admin@test.com', 'super_admin', 'active', NULL, NULL, NULL, NULL, NULL, '$2y$12$qfHXFaFxq8GQvByjTIe5Ie3jMb/ycs6np.TXVEX0vcAjZgehdPX5e', NULL, NULL, NULL, '2025-10-13 22:11:52', '2025-12-20 23:43:02'),
+(3, 'Hadji hermanto', 'patient@test.com', 'patient', 'active', NULL, NULL, NULL, NULL, NULL, '$2y$12$VIQc2EL8jxaXxcBEacNQf.FIPiYYqq29Npq1mZt41DJVVKsgK.CyO', NULL, NULL, NULL, '2025-10-13 22:14:42', '2025-11-02 23:32:59'),
+(5, 'Dr Dimas Anggara', 'conselor2@gmail.com', 'counselor', 'active', NULL, NULL, NULL, NULL, NULL, '$2y$12$Dx/UzIj64sInWUrH.XLBNe5L5mCxA538KfNbvRPkk.wEHlj8pq8UW', NULL, NULL, NULL, '2025-10-20 23:44:03', '2025-10-20 23:44:03'),
+(6, 'Dr Hayanti', 'conselor1@gmail.com', 'counselor', 'active', NULL, NULL, NULL, NULL, NULL, '$2y$12$fu5WXXtvtfORyGaW/cSMd.lNamIGIxPocUT2l0qSB8CIaTXZYOsw6', NULL, NULL, NULL, '2025-10-20 23:51:06', '2025-10-20 23:51:06'),
+(7, 'dr. Windi Tiandini, Sp.KJ', 'conselor3@gmail.com', 'counselor', 'active', NULL, NULL, NULL, NULL, NULL, '$2y$12$m693ii5Yh4e/YmWMsXhgNugqCUb.wCyhEJkhNcr1p6mSBmlUt0PG.', NULL, NULL, NULL, '2025-10-30 00:22:38', '2025-10-30 00:22:38'),
+(8, 'Hadji imam santoso', 'hadjiimam@gmail.com', 'patient', 'active', 19, 'pria', '1122332664448', 'profile_photos/patient/ortIiF1sqntIVOmu3cZu01UdfSDZK5igIqzQPxH8.jpg', NULL, '$2y$12$nLLbSuOKkifT2Sc/0thX8u2CFKjufh6SjKDzvTbv7tFzwBCHhSP/e', NULL, NULL, NULL, '2025-11-09 00:07:33', '2025-11-28 01:57:34'),
+(9, 'Muhammad Rozy', 'ozikurniawan12@gmail.com', 'patient', 'active', 23, 'pria', '0895801219766', NULL, NULL, '$2y$12$8z6Ogu8pqo/EUMXAxoV4a.7GLobFmkxt/VvIxhr9Yy18KMAUDK5ke', NULL, NULL, NULL, '2025-11-24 23:27:15', '2025-11-24 23:27:15'),
+(23, 'Nigeria azman', 'oraclerohim@gmail.com', 'patient', 'active', 22, 'pria', '0811234533778', NULL, NULL, '$2y$12$8DWtrqigUoqLMN1A/Ta8AOXDwlAvPrEWvyMGcem35hqD.sUjeTPwi', NULL, NULL, NULL, '2025-11-28 00:08:29', '2025-11-28 00:09:06'),
+(25, 'admin farrel', 'farrel@gmail.com', 'admin', 'active', NULL, NULL, NULL, NULL, NULL, '$2y$12$6rGfIeLI096aB1V5WaQugOMWYfC.UBcmmVZLDYLFaaAXajuoQdBTO', NULL, NULL, NULL, '2025-12-20 23:48:17', '2025-12-20 23:48:21'),
+(26, 'Raka Irwandi', 'raka@gmail.com', 'patient', 'active', 21, 'pria', '181241284212112', NULL, NULL, '$2y$12$RmCi3g7cX6USXOM2U6caF.JHbw7j/j1oY67bZr2bz9BrljJm/KOyC', NULL, NULL, NULL, '2025-12-28 21:24:53', '2025-12-28 21:25:14');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `appointments_patient_id_foreign` (`patient_id`),
+  ADD KEY `appointments_counselor_id_foreign` (`counselor_id`);
+
+--
+-- Indexes for table `cache`
+--
+ALTER TABLE `cache`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `cache_locks`
+--
+ALTER TABLE `cache_locks`
+  ADD PRIMARY KEY (`key`);
+
+--
+-- Indexes for table `counselor_profiles`
+--
+ALTER TABLE `counselor_profiles`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `counselor_profiles_user_id_foreign` (`user_id`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `jobs`
+--
+ALTER TABLE `jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `jobs_queue_index` (`queue`);
+
+--
+-- Indexes for table `job_batches`
+--
+ALTER TABLE `job_batches`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `reviews_appointment_id_foreign` (`appointment_id`),
+  ADD KEY `reviews_patient_id_foreign` (`patient_id`),
+  ADD KEY `reviews_counselor_id_foreign` (`counselor_id`);
+
+--
+-- Indexes for table `schedules`
+--
+ALTER TABLE `schedules`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `schedules_counselor_id_day_of_week_start_time_unique` (`counselor_id`,`day_of_week`,`start_time`);
+
+--
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `sessions_user_id_index` (`user_id`),
+  ADD KEY `sessions_last_activity_index` (`last_activity`);
+
+--
+-- Indexes for table `session_notes`
+--
+ALTER TABLE `session_notes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `session_notes_appointment_id_foreign` (`appointment_id`),
+  ADD KEY `session_notes_counselor_id_foreign` (`counselor_id`);
+
+--
+-- Indexes for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `transactions_transaction_code_unique` (`transaction_code`),
+  ADD KEY `transactions_appointment_id_foreign` (`appointment_id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `appointments`
+--
+ALTER TABLE `appointments`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
+--
+-- AUTO_INCREMENT for table `counselor_profiles`
+--
+ALTER TABLE `counselor_profiles`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `jobs`
+--
+ALTER TABLE `jobs`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `schedules`
+--
+ALTER TABLE `schedules`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `session_notes`
+--
+ALTER TABLE `session_notes`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `transactions`
+--
+ALTER TABLE `transactions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD CONSTRAINT `appointments_counselor_id_foreign` FOREIGN KEY (`counselor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `appointments_patient_id_foreign` FOREIGN KEY (`patient_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `counselor_profiles`
+--
+ALTER TABLE `counselor_profiles`
+  ADD CONSTRAINT `counselor_profiles_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `reviews`
+--
+ALTER TABLE `reviews`
+  ADD CONSTRAINT `reviews_appointment_id_foreign` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reviews_counselor_id_foreign` FOREIGN KEY (`counselor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `reviews_patient_id_foreign` FOREIGN KEY (`patient_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `schedules`
+--
+ALTER TABLE `schedules`
+  ADD CONSTRAINT `schedules_counselor_id_foreign` FOREIGN KEY (`counselor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `session_notes`
+--
+ALTER TABLE `session_notes`
+  ADD CONSTRAINT `session_notes_appointment_id_foreign` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `session_notes_counselor_id_foreign` FOREIGN KEY (`counselor_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `transactions`
+--
+ALTER TABLE `transactions`
+  ADD CONSTRAINT `transactions_appointment_id_foreign` FOREIGN KEY (`appointment_id`) REFERENCES `appointments` (`id`) ON DELETE CASCADE;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
